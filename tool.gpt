@@ -1,0 +1,31 @@
+Name: speech2text
+Description: Convert speech to text.
+Args: audio_file: (required) The speech file to be converted
+Args: model: (optional) The name of the model to use. Default is "whisper-1".
+Args: response_format: (optional) The format of the response. Default is "json".
+Args: output_file: (optional) The path to save the output file. Default is "translation".
+
+#!/bin/bash
+
+audio_file=${audio_file:-""}
+model=${model:-"whisper-1"}
+response_format=${response_format:-"json"}
+output_file=${output_file:-"transcription"}
+
+if [ -z "$OPENAI_API_KEY" ]; then
+echo "OPENAI_API_KEY is not set. Unable to transcribe audio. Please set the OPENAI_API_KEY as an environment variable."
+exit 1
+fi
+
+if [ -z "$audio_file" ]; then
+echo "audio_file argument is empty, but required. Unable to transcribe audio. Please provide the audio_file arg."
+exit 1
+fi
+
+curl https://api.openai.com/v1/audio/transcriptions \
+-H "Authorization: Bearer $OPENAI_API_KEY" \
+-H "Content-Type: multipart/form-data" \
+-F "model=$model" \
+-F "file=@$audio_file" \
+-F "response_format=$response_format" \
+--output "$output_file.$response_format"
