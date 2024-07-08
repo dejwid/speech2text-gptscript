@@ -30,4 +30,3 @@ curl --request POST \
   -F model="whisper-1" \
   -F "timestamp_granularities[]=word" \
   -F response_format="verbose_json"
-  -F "timestamp_granularities[]=word"
