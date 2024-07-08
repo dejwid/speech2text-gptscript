@@ -22,10 +22,9 @@ echo "audio_file argument is empty, but required. Unable to transcribe audio. Pl
 exit 1
 fi
 
-curl https://api.openai.com/v1/audio/transcriptions \
--H "Authorization: Bearer $OPENAI_API_KEY" \
--H "Content-Type: multipart/form-data" \
--F "model=$model" \
--F "file=@$audio_file" \
--F "response_format=$response_format" \
---output "$output_file.$response_format"
+curl --request POST \
+  --url https://api.openai.com/v1/audio/transcriptions \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header 'Content-Type: multipart/form-data' \
+  --form file=@$audio_file \
+  --form model=whisper-1
