@@ -1,6 +1,6 @@
 Name: speech2text
 Description: Convert speech to text.
-Args: audio_file: (required) The speech file to be converted
+Args: audio_file: (required) Full path to speech file to be converted
 Args: model: (optional) The name of the model to use. Default is "whisper-1".
 Args: response_format: (optional) The format of the response. Default is "json".
 Args: output_file: (optional) The path to save the output file. Default is "translation".
