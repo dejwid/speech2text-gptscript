@@ -22,6 +22,8 @@ echo "audio_file argument is empty, but required. Unable to transcribe audio. Pl
 exit 1
 fi
 
+print the curl with values instead of variable names before running it
+
 curl --request POST \
   --url https://api.openai.com/v1/audio/transcriptions \
   --header "Authorization: Bearer $OPENAI_API_KEY" \
