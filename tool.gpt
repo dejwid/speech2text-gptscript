@@ -25,7 +25,7 @@ fi
 curl --request POST \
   --url https://api.openai.com/v1/audio/transcriptions \
   --header "Authorization: Bearer $OPENAI_API_KEY" \
-  --header 'Content-Type: multipart/form-data' \
+  --header "Content-Type: multipart/form-data" \
   -F "file=@${audio_file}" \
   -F model="whisper-1" \
   -F "timestamp_granularities[]=word" \
